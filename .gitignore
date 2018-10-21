@@ -165,3 +165,4 @@ tsc_out/
 dist/
 logs/
 __temp/
+example/logs/
