@@ -1,4 +1,5 @@
-const NodeLogger = require('../lib/NodeLogger');
+const chalk = require('chalk');
+const NodeLogger = require('../lib/index');
 
 const LOG_PATH = __dirname + '/logs';
 
@@ -7,14 +8,19 @@ const nodeLogger = NodeLogger.createLogger({
 });
 
 const gulpLog = nodeLogger.with({
-  color: 'gray',
+  colorFunction: chalk.gray,
   tag: 'gulp',
 });
 
 const httpLog = nodeLogger.with({
-  color: 'black',
+  colorFunction: chalk.green,
   tag: 'http',
 });
 
-gulpLog.info('gulp');
-httpLog.debug('http');
+nodeLogger.debug('debug - single string');
+nodeLogger.debug('debug - splat without with(): %s', 123);
+
+gulpLog.info('gulpLog - single string');
+gulpLog.debug('gulpLog - single splat string %s %o', 123, { a: 1 });
+
+httpLog.debug('httpLog - single string');
