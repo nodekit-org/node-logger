@@ -1,7 +1,7 @@
 {
   "author": "Elden S. Park",
   "description": "Logger that runs on node.js runtime",
-  "main": "lib/NodeLogger.js",
+  "main": "lib/index.js",
   "name": "node-logger",
   "license": "ISC",
   "scripts": {
@@ -36,5 +36,9 @@
     "gulp-babel": "^8.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/nodekit-org/node-logger/issues"
+  },
+  "homepage": "https://github.com/nodekit-org/node-logger#readme",
 }
