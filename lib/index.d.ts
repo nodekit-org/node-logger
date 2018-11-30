@@ -1,6 +1,5 @@
 import * as winston from 'winston';
-declare const createLogger: CreateLogger;
-export { createLogger, };
+export declare const createLogger: CreateLogger;
 interface CreateLogger {
     (props: {
         logPath: string;
@@ -12,4 +11,5 @@ interface EnhancedLogger {
         tag: string;
     }): winston.Logger;
 }
+export {};
 //# sourceMappingURL=index.d.ts.map

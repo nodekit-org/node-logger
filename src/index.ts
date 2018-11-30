@@ -5,11 +5,11 @@ import * as util from 'util';
 import * as winston from 'winston';
 require('winston-daily-rotate-file');
 
-const createLogger: CreateLogger = function ({
+export const createLogger: CreateLogger = function ({
   logPath,
 }) {
-  (function logPathShouldBePresent() {
-    if (!fs.existsSync(logPath)){
+  (function logPathShouldBeValid() {
+    if (!fs.existsSync(logPath)) {
       fs.mkdirSync(logPath);
     }
   })();
@@ -95,10 +95,10 @@ function withWith(logger) {
       
       Object.keys(that.levels)
         .forEach((level) => {
-          obj[level] = function (format, ...params) {
+          obj[level] = function (...args) {
             that[level]({
               colorFunction,
-              message: [ format, ...params ],
+              message: args,
               tag,
             });
           };
@@ -108,10 +108,6 @@ function withWith(logger) {
   });
   return logger;
 }
-
-export {
-  createLogger,
-};
 
 function isArray(src: any) {
   return src.constructor === Array;  
