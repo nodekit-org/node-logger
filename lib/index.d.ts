@@ -1,3 +1,4 @@
+import 'winston-daily-rotate-file';
 import * as winston from 'winston';
 export declare const createLogger: CreateLogger;
 interface CreateLogger {

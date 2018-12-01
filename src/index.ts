@@ -1,9 +1,12 @@
+import 'winston-daily-rotate-file';
+
 import chalk from 'chalk';
 import * as fs from 'fs';
 import { SPLAT } from 'triple-beam';
 import * as util from 'util';
 import * as winston from 'winston';
-require('winston-daily-rotate-file');
+
+const logTag = chalk.cyan('[node-logger]');
 
 export const createLogger: CreateLogger = function ({
   logPath,
@@ -79,7 +82,7 @@ const ignoreConsoleOnly = winston.format((info, opts) => {
 
 function withWith(logger) {
   if (logger.with !== undefined) {
-    console.warn('[node-logger] winston.with is overwritten by custom with(). Contact the author to either rename the props or remove it.' );
+    console.warn(`${logTag} winston.with is overwritten by custom with(). Contact the author to either rename the props or remove it.`);
   }
 
   Object.defineProperty(logger, 'with', {
@@ -88,7 +91,7 @@ function withWith(logger) {
       colorFunction,
       tag,
     }) {
-      console.log('[node-logger] logger is regsitered with tag: %s, having colorFunction: %s', tag, !!colorFunction);
+      console.log(`${logTag} logger is regitered with tag: %s, having colorFunction: %s`, tag, !!colorFunction);
 
       const that = this;
       const obj = {};
@@ -115,7 +118,7 @@ function isArray(src: any) {
 
 function printLevels(logger: winston.Logger) {
   const levels = Object.keys(logger.levels).join(' ');
-  console.log('[node-logger] default levels: %s', levels);
+  console.log(`${logTag} default levels: %s`, levels);
 }
 
 interface CreateLogger {
